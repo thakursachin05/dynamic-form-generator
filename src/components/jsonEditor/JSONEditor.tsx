@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-monokai';
@@ -10,7 +10,6 @@ interface JSONEditorProps {
 
 const JSONEditor: React.FC<JSONEditorProps> = ({ json, onChange }) => {
   const [error, setError] = useState<string | null>(null);
-  const isFirstRender = useRef(true);
 
   useEffect(() => {
     try {
@@ -22,11 +21,6 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ json, onChange }) => {
   }, [json]);
 
   const handleJsonChange = (value: string) => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
     try {
       JSON.parse(value);
       setError(null);

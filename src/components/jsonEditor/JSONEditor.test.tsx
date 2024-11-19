@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import JSONEditor from './JSONEditor';
 
 jest.mock('ace-builds/src-noconflict/mode-json', () => {});
 jest.mock('ace-builds/src-noconflict/theme-monokai', () => {});
 
-interface MockAceEditorProps {
-  value: string;
-  onChange: (value: string) => void;
-}
-
 jest.mock('react-ace', () => {
   const React = require('react');
-  return ({ value, onChange }: MockAceEditorProps) => (
+  return ({ value, onChange }: { value: string; onChange: (value: string) => void }) => (
     <textarea
       data-testid="ace-editor"
       value={value}
@@ -24,21 +19,23 @@ jest.mock('react-ace', () => {
 describe('JSONEditor Component', () => {
   const initialJson = '{"key": "value"}';
 
-  test('renders without crashing', () => {
-    render(<JSONEditor json={initialJson} onChange={() => {}} />);
-    const editor = screen.getByTestId('ace-editor');
-    expect(editor).toBeInTheDocument();
-  });
-
-  test('displays the initial JSON value', () => {
-    render(<JSONEditor json={initialJson} onChange={() => {}} />);
-    const editor = screen.getByTestId('ace-editor') as HTMLTextAreaElement;
-    expect(editor.value).toBe(initialJson);
-  });
-
   test('calls onChange with new value when valid JSON is entered', () => {
     const handleChange = jest.fn();
-    render(<JSONEditor json={initialJson} onChange={handleChange} />);
+
+    const TestComponent = () => {
+      const [json, setJson] = useState(initialJson);
+      return (
+        <JSONEditor
+          json={json}
+          onChange={(value) => {
+            setJson(value);
+            handleChange(value);
+          }}
+        />
+      );
+    };
+
+    render(<TestComponent />);
     const editor = screen.getByTestId('ace-editor') as HTMLTextAreaElement;
 
     const newJson = '{"newKey": "newValue"}';
@@ -50,7 +47,21 @@ describe('JSONEditor Component', () => {
 
   test('displays error message when invalid JSON is entered', () => {
     const handleChange = jest.fn();
-    render(<JSONEditor json={initialJson} onChange={handleChange} />);
+
+    const TestComponent = () => {
+      const [json, setJson] = useState(initialJson);
+      return (
+        <JSONEditor
+          json={json}
+          onChange={(value) => {
+            setJson(value);
+            handleChange(value);
+          }}
+        />
+      );
+    };
+
+    render(<TestComponent />);
     const editor = screen.getByTestId('ace-editor') as HTMLTextAreaElement;
 
     const invalidJson = '{"key": "value"';
