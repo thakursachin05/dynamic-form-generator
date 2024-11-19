@@ -28,7 +28,7 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
     };
   
     if (field.validation) {
-      const { pattern, message, min, max, minLength, maxLength } = field.validation;
+      const { pattern, min, max, minLength, maxLength } = field.validation;
   
       if (pattern) {
         validationRules.pattern = {
@@ -45,8 +45,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
           };
         } else {
           validationRules.minLength = {
-            value: min,
-            message: field.validation.message || `Minimum length is ${min} characters`,
+            value: minLength,
+            message: field.validation.message || `Minimum length is ${minLength} characters`,
           };
         }
       }
@@ -59,8 +59,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
           };
         } else {
           validationRules.maxLength = {
-            value: max,
-            message: field.validation.message || `Maximum length is ${max} characters`,
+            value: maxLength,
+            message: field.validation.message || `Maximum length is ${maxLength} characters`,
           };
         }
       }
