@@ -146,7 +146,9 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <h1 className="text-xl font-bold dark:text-white">{formTitle}</h1>
+     <h1 className="text-xl font-bold dark:text-white" data-testid="form-title">
+      {formTitle}
+     </h1>
       <p className="text-sm text-gray-600 dark:text-gray-300">{formDescription}</p>
 
       {fields?.map((field) => (

@@ -1,10 +1,20 @@
-import { defineConfig } from '@playwright/test';
+import { PlaywrightTestConfig } from '@playwright/test';
 
-export default defineConfig({
-  testDir: './tests/playwright',
-  timeout: 30 * 1000, 
+const config: PlaywrightTestConfig = {
+  testDir: 'tests/e2e',
+  timeout: 60000,
+  retries: 0,
   use: {
     headless: true,
-    viewport: { width: 1280, height: 720 },
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
   },
-});
+  webServer: {
+    command: 'npm start',
+    port: 3000,
+    timeout: 120 * 1000,
+    reuseExistingServer: !process.env.CI,
+  },
+};
+
+export default config;
