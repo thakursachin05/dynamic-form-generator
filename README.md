@@ -22,6 +22,14 @@ You can view and interact with the live application here:
 
 ---
 
+## **Documentation **
+
+You can view and interact with the live application here:
+
+- **[Documentation](https://wiggly-iridium-b4d.notion.site/Dynamic-Form-Generator-Documentation-143e8adae051809b99d9e4cafdbea61e)** ([Read the Doc](https://docs.google.com/document/d/17HInUC21cfjk5kuKCZLx8xqPfR7EN1nKxgz5fYj3hgA/edit?usp=sharing))
+
+---
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -215,3 +223,62 @@ Using the above schema, the following form will be generated:
 1. Copy the schema into the **JSON Editor** in the app.
 2. Edit the JSON as needed for your form.
 3. The form will dynamically update in the **Form Preview** section. 
+
+
+Here’s the updated version of your README content with the documentation link added:
+
+---
+
+### Project Introduction
+
+I have built a **Dynamic Form Generator** as part of the challenge. The project includes all the required features and some bonus features for a better experience.
+
+You can explore the project here:  
+- **[GitHub Repository](#)**  
+- **[Live App](#)**  
+- **[Documentation](#)** ([Read the Docs](#))
+
+---
+
+### How It Works
+
+#### **Split-Screen Feature**
+The application is divided into two parts:  
+1. **JSON Editor**: This is where users can input or edit JSON.  
+2. **Form Generator**: This creates a form based on the JSON provided.
+
+---
+
+#### **JSON Editor**
+To make editing JSON easy and visually appealing, I chose to use the **ACE Editor**. This editor highlights the JSON format and makes it look cleaner compared to a simple `TextArea`.  
+
+Here’s how it works:  
+- **Error Handling**: If the JSON has errors, the ACE Editor shows those errors immediately.  
+- **Valid JSON**: If the JSON is correct, it is sent to the **Form Generator**.
+
+---
+
+#### **Form Generator**
+The Form Generator takes the valid JSON and creates a form based on it.  
+- It checks the structure of the JSON to decide how each field should look and behave.  
+- After filling out the form, the submitted data is saved in the application, and the user can **download the data** for future use.
+
+---
+
+#### **Responsive Design**
+The app is built using **Tailwind CSS**, which ensures it works well and looks good on all devices, whether it’s a phone, tablet, or desktop.
+
+---
+
+### Key Features
+- **Easy JSON Editing** with real-time error detection.  
+- **Dynamic Form Creation** based on the input JSON.  
+- Option to **download submitted data**.  
+- **Responsive Design** for all screen sizes.  
+- **Clean and user-friendly interface** with ACE Editor.
+
+This project is designed to be simple, effective, and easy to use, meeting all the challenge requirements and adding extra features to make it even better. 
+
+---
+
+Make sure to replace the `#` placeholders with the actual links before publishing the README.
