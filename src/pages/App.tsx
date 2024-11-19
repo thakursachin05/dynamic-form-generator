@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import JSONEditor from './components/jsonEditor/JSONEditor';
-import FormGenerator from './components/formGenerator/FormGenerator';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import JSONEditor from '../components/jsonEditor/JSONEditor';
+import FormGenerator from '../components/formGenerator/FormGenerator';
 
 const initialSchema = {
   formTitle: "Sample Form",
@@ -73,9 +72,7 @@ const App: React.FC = () => {
         </div>
         <div className="p-4 bg-white rounded shadow dark:bg-gray-800">
           <h2 className="text-lg font-bold mb-4">Form Preview</h2>
-          <ErrorBoundary>
             <FormGenerator schema={formSchema} />
-          </ErrorBoundary>
         </div>
       </div>
     </div>
