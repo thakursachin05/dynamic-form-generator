@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import JSONEditor from './components/jsonEditor/JSONEditor';
 import FormGenerator from './components/formGenerator/FormGenerator';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
@@ -22,6 +22,14 @@ const App: React.FC = () => {
   const [formSchema, setFormSchema] = useState(initialSchema);
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   const handleJsonChange = (updatedJson: string) => {
     setJson(updatedJson);
     try {
@@ -38,9 +46,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`${darkMode ? 'dark' : ''} min-h-screen p-4 bg-gray-50 dark:bg-gray-900 dark:text-white`}>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Dynamic Form Generator</h1>
+    <div className="min-h-screen p-4 bg-gray-50 dark:bg-gray-900 dark:text-white">
+      <div className="md:flex justify-between items-center mb-4">
+        <div className="title">
+          <h1 className="text-2xl font-bold">Dynamic Form Generator</h1>
+        </div>
         <div className="space-x-2">
           <button
             onClick={() => setDarkMode(!darkMode)}

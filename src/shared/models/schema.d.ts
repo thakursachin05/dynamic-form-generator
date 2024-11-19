@@ -5,6 +5,10 @@ export interface Field {
     required?: boolean;
     placeholder?: string;
     options?: { value: string; label: string }[];
+    validation?: {
+      pattern?: string,
+      message?: string,
+    } 
   }
   
   export interface Schema {
