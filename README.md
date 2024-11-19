@@ -14,6 +14,14 @@ A React-based dynamic form generator that allows users to define and preview for
 
 ---
 
+## **Live App**
+
+You can view and interact with the live application here:
+
+🔗 **[Dynamic Form Generator Live App](https://dyanmic-form-generator.netlify.app/)**
+
+---
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
