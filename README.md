@@ -22,7 +22,7 @@ You can view and interact with the live application here:
 
 ---
 
-## **Documentation **
+## **Documentation**
 
 You can view and interact with the live application here:
 
