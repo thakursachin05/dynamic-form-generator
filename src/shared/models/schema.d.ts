@@ -8,6 +8,10 @@ export interface Field {
     validation?: {
       pattern?: string,
       message?: string,
+      min?: number,
+      max?: number,
+      minLength?: number,
+      maxLength?: number
     } 
   }
   

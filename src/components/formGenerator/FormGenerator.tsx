@@ -26,14 +26,45 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
     const validationRules: any = {
       required: field.required ? 'This field is required' : false,
     };
-
-    if (field.validation?.pattern) {
-      validationRules.pattern = {
-        value: new RegExp(field.validation.pattern),
-        message: field.validation.message || 'Invalid input format',
-      };
+  
+    if (field.validation) {
+      const { pattern, message, min, max, minLength, maxLength } = field.validation;
+  
+      if (pattern) {
+        validationRules.pattern = {
+          value: new RegExp(pattern),
+          message: field.validation.message || 'Invalid input format',
+        };
+      }
+  
+      if (min !== undefined) {
+        if (['number', 'date', 'datetime-local', 'time'].includes(field.type)) {
+          validationRules.min = {
+            value: min,
+            message: field.validation.message || `Value must be at least ${min}`,
+          };
+        } else {
+          validationRules.minLength = {
+            value: min,
+            message: field.validation.message || `Minimum length is ${min} characters`,
+          };
+        }
+      }
+  
+      if (max !== undefined) {
+        if (['number', 'date', 'datetime-local', 'time'].includes(field.type)) {
+          validationRules.max = {
+            value: max,
+            message: field.validation.message || `Value must be at most ${max}`,
+          };
+        } else {
+          validationRules.maxLength = {
+            value: max,
+            message: field.validation.message || `Maximum length is ${max} characters`,
+          };
+        }
+      }
     }
-
     return (
       <div className="relative">
         {['text', 'email', 'password', 'number', 'url', 'tel', 'date', 'datetime-local', 'time'].includes(field.type) && (
